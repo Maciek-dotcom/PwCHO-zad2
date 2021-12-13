@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+    nginx:
+        image: nginx
+        ports:
+            - "6666:80"
+        links:
+            - phpfpm
+        
+    phpfpm:
+        image: php:fpm-alpine
+
+    mariadb:
+        image: mariadb:10.5.2
+        volumes:
+            - mariadb-volume:/var/lib/mysql
+        environment:
+            TZ: "Europe/Rome"
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_USER: 'student'
+            MYSQL_PASSWORD: 'student'
+            MYSQL_DATABASE: 'baza'
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - 'mariadb:db'
+        ports:
+            - 6001:80
+
+volumes:
+    mariadb-volume:
