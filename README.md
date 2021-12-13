@@ -1,5 +1,5 @@
 # PwCHO-zad2
 Chmura Obliczeniowa 
 
-#Uruchomienie 
+# Uruchomienie 
 docker-compose up -d 
